@@ -152,16 +152,28 @@ SoundCloudAPI.getEmbed=function (url) {
  sidebar.innerHTML=localStorage.getItem("key");
 
 
- // Removing all playlist
- var remove =document.createElement("div");
- remove.classList.add("remove","ui","bottom","attached","button");
- var removeText = document.createElement("span");
- removeText.innerHTML = "Reset playlist";
- remove.appendChild(removeText);
- document.querySelector(".js-playlist").appendChild(remove);
 
  // removing by clicking
+ var remove=document.querySelector(".remove");
  remove.addEventListener("click", function(){
+   alert("The Playlist will be removed !!!");
    var sidebar=document.querySelector(".inner");
    sidebar.innerHTML=localStorage.removeItem("key");
- });
+   });
+
+ // Save playlist
+ var save=document.querySelector(".save");
+ save.addEventListener("click", function(){
+     var x = prompt("Enter the Playlist name for SAVE:");
+     var sidebar=document.querySelector(".inner");
+     localStorage.setItem(x , sidebar.innerHTML);
+     });
+
+
+  // Load playlist
+  var load=document.querySelector(".load");
+  load.addEventListener("click", function(){
+      var x = prompt("Enter the Playlist name for LOAD:");
+      var sidebar=document.querySelector(".inner");
+      sidebar.innerHTML=localStorage.getItem( x );
+      });
